@@ -1,0 +1,20 @@
+apiVersion: kubeshare.nthu/v1
+kind: SharePod
+metadata:
+  name: sharepod1
+  annotations:
+    "kubeshare/gpu_request": "0.3" # required if allocating GPU
+    "kubeshare/gpu_limit": "0.5" # required if allocating GPU
+    "kubeshare/gpu_mem": "473741824" # required if allocating GPU # 1Gi, in bytes
+    "kubeshare/sched_affinity": "red" # optional
+    #"kubeshare/sched_anti-affinity": "green" # optional
+    #"kubeshare/sched_exclusion": "blue" # optional
+spec: # PodSpec
+  containers:
+  - name: cuda
+    image: nvcr.io/nvidia/k8s/cuda-sample:vectoradd-cuda10.2
+    #command: ["nvidia-smi", "-L"]
+    resources:
+      limits:
+        cpu: "1"
+        memory: "500Mi"

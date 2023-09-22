@@ -1,0 +1,17 @@
+apiVersion: kubeshare.nthu/v1
+kind: SharePod
+metadata:
+  name: sharepod-gpu
+  annotations:
+    "kubeshare/gpu_request": "0.3"
+    "kubeshare/gpu_limit": "0.3"
+    "kubeshare/gpu_mem": "1073741824" # 1Gi, in bytes
+spec: # PodSpec
+  containers:
+  - name: cuda
+    image: nvidia/cuda:12.2.0-base-ubuntu20.04
+    command: ["nvidia-smi", "-L"]
+    resources:
+      limits:
+        cpu: "1"
+        memory: "500Mi"
