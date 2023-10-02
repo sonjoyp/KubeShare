@@ -85,7 +85,7 @@ kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.
 
 #https://stackoverflow.com/questions/74741993/0-1-nodes-are-available-1-pod-has-unbound-immediate-persistentvolumeclaims
 helm install prometheus prometheus-community/prometheus --namespace prometheus --version 19.7.2
-export POD_NAME=$(kubectl get pods --namespace prometheus -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")kubectl --namespace prometheus port-forward $POD_NAME 9090
+export POD_NAME=$(kubectl get pods --namespace prometheus -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
 kubectl --namespace prometheus port-forward $POD_NAME 9090
 
 #git clone https://github.com/sonjoyp/KubeShare.git --branch release-1.0
